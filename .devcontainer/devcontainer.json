@@ -1,0 +1,21 @@
+{
+  "image": "docker.io/kostrykin/mobi-devcontainer-python:2023.1",
+  "hostRequirements": {
+    "cpus": 2
+  },
+  "customizations": {
+    "codespaces": {
+      "openFiles": []
+    },
+    "vscode": {
+      "settings": {
+        "files.exclude": {
+          "**/.*": true,
+          "**/*.md": true,
+          "LICENSE": true,
+          "images": true
+        }
+      }
+    }
+  }
+}

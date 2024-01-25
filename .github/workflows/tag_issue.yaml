@@ -1,0 +1,43 @@
+name: Assigns tags to new issues
+
+on:
+  issues:
+    types: [opened]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      issues: write
+    steps:
+      -
+        name: Initialize
+        uses: actions/checkout@v2
+      -
+        name: Compute label
+        id: compute_label
+        run: echo "label=$(python .github/compute_label.py)" >> "$GITHUB_OUTPUT"
+      -
+        name: Create label
+        continue-on-error: true
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.createLabel({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              name: '${{ steps.compute_label.outputs.label }}',
+              color: 'FFFFFF'
+            });
+      -
+        name: Assign label
+        continue-on-error: true
+        uses: actions/github-script@v6
+        with:
+          script: |
+            github.rest.issues.addLabels({
+              issue_number: context.issue.number,
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              labels: ['${{ steps.compute_label.outputs.label }}']
+            });

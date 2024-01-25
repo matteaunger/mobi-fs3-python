@@ -1,0 +1,43 @@
+name: Help wanted
+description: Things aren't working and I'm stuck!
+title: Things aren't working and I'm stuck!
+labels: ['help wanted']
+body:
+  - type: input
+    id: repository
+    attributes:
+      label: Repository
+      description: Paste a link to your GitHub repository.
+      placeholder: mobi-fs3-python
+    validations:
+      required: true
+  - type: checkboxes
+    id: confirmation_of_accessibility
+    attributes:
+      label: Access rights
+      description: Please confirm that your GitHub repository is public, or you have [granted access](https://docs.github.com/de/account-and-profile/setting-up-and-managing-your-personal-account-on-github/managing-access-to-your-personal-repositories/inviting-collaborators-to-a-personal-repository) to the [course supervisors](https://github.com/BMCV/mobi-fs3-python/blob/master/SUPERVISORS.md).
+      options:
+        - label: I hereby confirm that the supervisors can access my GitHub repository.
+          required: true
+  - type: checkboxes
+    id: confirmation_of_having_pushed
+    attributes:
+      label: Git commit and push
+      description: Please confirm that you have pushed the work which is relevant to this issue to your GitHub repository.
+      options:
+        - label: I hereby confirm that I have committed and pushed to my GitHub repository.
+          required: true
+  - type: input
+    id: task
+    attributes:
+      label: Task
+      description: The task number(s) at which you need help.
+    validations:
+      required: true
+  - type: textarea
+    id: info
+    attributes:
+      label: Describe the problem (if possible)
+      description: Give some context about the problem.
+    validations:
+      required: false
